@@ -40,7 +40,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
               { icon: Truck, title: 'Free Shipping', desc: 'On orders above ₹500' },
-              { icon: RotateCcw, title: 'Easy Returns', desc: '30-day hassle-free returns' },
+              { icon: RotateCcw, title: 'Easy Returns', desc: '7-day hassle-free returns' },
               { icon: ShieldCheck, title: 'Secure Payment', desc: '100% secure checkout' },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="flex items-center gap-3 justify-center md:justify-start">

@@ -56,8 +56,8 @@ const FilterSidebar = () => {
         >
           <option value="">Default</option>
           <option value="newest">Newest</option>
-          <option value="price_asc">Price: Low to High</option>
-          <option value="price_desc">Price: High to Low</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
           <option value="rating">Top Rated</option>
         </select>
       </div>
