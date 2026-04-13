@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import api, { IMAGE_BASE } from '@/api/axios';
 import OrderStatusBadge from '@/components/OrderStatusBadge';
@@ -11,7 +11,7 @@ const OrderDetailPage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get(`/orders/${id}`).then(r => setOrder(r.data.order || r.data)).catch(() => {}).finally(() => setLoading(false));
+    api.get(`/orders/${id}`).then(r => setOrder(r.data.order || r.data)).catch(() => { }).finally(() => setLoading(false));
   }, [id]);
 
   if (loading) return (
@@ -35,7 +35,21 @@ const OrderDetailPage = () => {
             <h2 className="text-sm font-semibold text-foreground mb-3">Items</h2>
             {order.orderItems?.map((item: any, i: number) => (
               <div key={i} className="flex gap-3 py-3 border-b border-border last:border-0">
-                <img src={item.image ? `${IMAGE_BASE}${item.image}` : '/placeholder.svg'} alt="" className="w-14 h-14 rounded-lg object-cover bg-surface" />
+                <img
+                  src={
+                    item.image
+                      ? item.image.startsWith("http")
+                        ? item.image
+                        : `${IMAGE_BASE}${item.image}`
+                      : item.images?.[0]?.url
+                        ? item.images[0].url.startsWith("http")
+                          ? item.images[0].url
+                          : `${IMAGE_BASE}${item.images[0].url}`
+                        : "/placeholder.svg"
+                  }
+                  alt={item.name}
+                  className="w-14 h-14 rounded-lg object-cover bg-surface"
+                />
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground">{item.name}</p>
                   <p className="text-xs text-muted-foreground">Qty: {item.quantity} × {formatPrice(item.price)}</p>
