@@ -44,6 +44,11 @@ const LoginPage = () => {
         <p className="text-sm text-center text-muted-foreground mt-4">
           Don't have an account? <Link to="/register" className="text-primary font-medium hover:underline">Register</Link>
         </p>
+        <p className="text-right text-sm mt-2">
+          <Link to="/forgot-password" className="text-primary hover:underline">
+            Forgot Password?
+          </Link>
+        </p>
       </div>
     </div>
   );
